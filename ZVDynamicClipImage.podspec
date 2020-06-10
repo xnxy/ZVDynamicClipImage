@@ -25,6 +25,7 @@ Pod::Spec.new do |spec|
   
   spec.subspec 'Public' do |specC|
     specC.source_files = "ZVDynamicClipImage/ZVDynamicClipImage/Public/*"
+    specC.dependency 'ZVDynamicClipImage/Private'
   end
 
 end
