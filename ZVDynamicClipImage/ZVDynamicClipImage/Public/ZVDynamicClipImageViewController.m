@@ -47,14 +47,13 @@ typedef void(^ZVDynamicClipImageComplete)(UIImage *image);
 
 - (void)showAndComplete:(void(^)(UIImage *image))complete {
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:self
-                                                                                 animated:NO
+                                                                                 animated:YES
                                                                                completion:nil];
     self.dynamicClipImageComplete = complete;
 }
 
 - (void)dismissWithCompletion:(void(^)(void))completion{
-
-    [self dismissViewControllerAnimated:NO completion:completion];
+    [self dismissViewControllerAnimated:YES completion:completion];
 }
 
 - (void)viewDidLoad {
