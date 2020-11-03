@@ -47,7 +47,8 @@ typedef void(^ZVDynamicClipImageComplete)(UIImage *image);
 
 - (void)showAndComplete:(void(^)(UIImage *image))complete {
     UIViewController *vc = [[UIApplication sharedApplication].windows lastObject].rootViewController;
-    self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    self.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [vc presentViewController:self animated:YES completion:nil];
     self.dynamicClipImageComplete = complete;
 }
