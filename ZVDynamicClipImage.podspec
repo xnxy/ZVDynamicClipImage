@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "ZVDynamicClipImage"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.3"
   spec.summary      = "动态区域裁剪图片的iOS库"
   spec.homepage     = "https://github.com/xnxy/ZVDynamicClipImage.git"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
