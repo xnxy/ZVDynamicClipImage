@@ -410,7 +410,11 @@ typedef void(^ZVDynamicClipImageComplete)(UIImage *image);
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton setTitle:@"取消" forState:UIControlStateNormal];
         [_backButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(10, 20, 80, 50);
+        CGFloat top = 20;
+        if ([self isIphoneX]) {
+            top = 20 + 44;
+        }
+        _backButton.frame = CGRectMake(10, top, 80, 50);
     }
     return _backButton;
 }
@@ -420,9 +424,26 @@ typedef void(^ZVDynamicClipImageComplete)(UIImage *image);
         _confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_confirmButton setTitle:@"确认" forState:UIControlStateNormal];
         [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _confirmButton.frame = CGRectMake(CGRectGetWidth(self.view.frame) - 80 - 10, 20, 80, 50);
+        CGFloat top = 20;
+        if ([self isIphoneX]) {
+            top = 20 + 44;
+        }
+        _confirmButton.frame = CGRectMake(CGRectGetWidth(self.view.frame) - 80 - 10, top, 80, 50);
     }
     return _confirmButton;
+}
+
+- (BOOL)isIphoneX{
+    UIWindow *keyWindow = [[[UIApplication sharedApplication] delegate] window];
+    // 获取底部安全区域高度，iPhone X 竖屏下为 34.0，横屏下为 21.0，其他类型设备都为 0
+    BOOL haveSafeInset;
+    if (@available(iOS 11.0, *)) {
+        CGFloat bottomSafeInset = keyWindow.safeAreaInsets.bottom;
+        haveSafeInset = (bottomSafeInset == 34.0f || bottomSafeInset == 21.0f);
+    }else{
+        haveSafeInset = NO;
+    }
+    return haveSafeInset;
 }
 
 - (UIColor *)backgroundColor{
